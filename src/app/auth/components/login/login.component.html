@@ -1,0 +1,24 @@
+
+
+<div class="col-lg-3 col-md-4 col-10 m-auto ">
+
+<form (ngSubmit)="login()" #formLogin="ngForm" class="bg-dark bg-opacity-50 text-white p-1 border border-4 border-dark rounded text-dark " >
+    <h2 class="fs-3 text-center mb-2 p-1">Ingresar</h2>
+    <div class="mb-1 col-10 m-auto">
+      <label for="email" class="form-label">Correo</label>
+      <input required [ngClass]="{'border-2 border-danger':email.errors?.['required'] && email.touched}" [(ngModel)]="user.email" #email="ngModel" type="email" pattern="[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-]([\.]?[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-])+@[a-zA-Z0-9]([^@&%$\/\(\)=?¿!\.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?"  class="form-control" id="email" name="email" aria-describedby="emailHelp">
+      
+      <span class="text-danger fs-6" *ngIf="email.errors?.['pattern'] && email.touched " >*Email invalido</span>
+    </div>
+    <div class="mb-1 col-10 m-auto">
+      <label for="password" class="form-label">Contraseña</label>
+      <input [ngClass]="{'border-2 border-danger':password.errors?.['required'] && password.touched}" [(ngModel)]="user.password" type="password" class="form-control" required #password="ngModel" id="password" name="password  ">
+    </div>
+    <div class="mb-3 col-10 form-check m-auto">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button [disabled]="formLogin.invalid" type="submit" class="btn btn-sm btn-primary mt-2 d-block d-block m-auto">Ingresar</button>
+  </form>
+
+</div>

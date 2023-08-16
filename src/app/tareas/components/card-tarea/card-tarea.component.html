@@ -1,0 +1,23 @@
+
+<div [ngClass]="(tarea.fecha | tiempoFaltante) === 'Hoy' ? 'shadow-warning'  : '' " class="card col-auto bg-dark text-light border-0" style="width: 18rem;" >
+  
+  <ng-container *ngIf="tarea.fecha | tiempoFaltante;else tarea_expirada">
+    <span [ngClass]="(tarea.fecha | tiempoFaltante) === 'Hoy' ? 'bg-dark rounded ps-2'  : '' " class="col-sm-4 col-12 bg-success ps-1">{{tarea.fecha | tiempoFaltante}}</span>
+  </ng-container>
+
+  <ng-template #tarea_expirada>
+    <span class="col-sm-4 col-12 bg-danger  ps-1">Expirada</span>
+  </ng-template>
+  
+
+    <div class="card-body">
+      <h5 class="card-title">{{tarea.titulo}}</h5>
+      <h6 class="card-subtitle text-secondary mb-3">Registrada {{tarea.createdAt | fecha}} </h6>
+      <p class="card-text p-2 shadow shadow-5">{{tarea.descripcion}}
+        <br>
+        <span class="text-fluid" >{{tarea.fecha | fecha}}</span>
+      </p>
+      <a [routerLink]="['/tareas/actualizar-tarea',tarea._id]" class="btn btn-link link-primary">Actualizar</a>
+      <button (click)="eliminarTarea(tarea)" class="btn btn-link link-danger   ">Eliminar tarea</button>
+    </div>
+  </div>

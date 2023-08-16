@@ -1,0 +1,50 @@
+
+
+<form  (ngSubmit)="procesarFormulario()" [formGroup]="formulario_tarea" class="col-lg-3  col-md-6 col-10 m-auto mt-5 p-3  bg-dark text-white">
+
+
+
+  <!-- Campo titulo -->
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Tarea</label>
+    <input type="text" class="form-control" id="titulo" name="titulo" formControlName="titulo" placeholder="">
+    
+    <ng-container *ngIf="formulario_tarea.get('titulo')?.touched && !formulario_tarea.get('titulo')?.valid" >
+    <div class="alert alert-danger p-0 mt-1 d-flex" role="alert">
+            <span *ngIf="formulario_tarea.get('titulo')?.errors?.['required']" class="fs-6  p-1 ">Requerido</span>
+            <span *ngIf="formulario_tarea.get('titulo')?.errors?.['minlength']" class="fs-6 p-1 ">Minimo de {{ formulario_tarea.get('titulo')?.errors?.['minlength'].requiredLength }} cactares</span>
+        </div>
+    </ng-container>
+      
+</div>
+
+  <!-- Campo descripcion -->
+  <div class="mb-3">
+    <label for="descripcion" class="form-label">Descripción</label>
+    <textarea class="form-control" id="descripcion" name="descripcion" formControlName="descripcion" rows="3"></textarea>
+    <ng-container *ngIf="formulario_tarea.get('descripcion')?.touched && !formulario_tarea.get('descripcion')?.valid" >
+        <div class="alert alert-danger p-0 mt-1 d-flex" role="alert">
+                <span *ngIf="formulario_tarea.get('descripcion')?.errors?.['required']" class="fs-6  p-1 ">Requerido</span>
+                <span *ngIf="formulario_tarea.get('descripcion')?.errors?.['minlength']" class="fs-6 p-1 ">Minimo {{ formulario_tarea.get('descripcion')?.errors?.['minlength'].requiredLength }} cactares</span>
+            </div>
+        </ng-container>
+  </div>
+
+  <!-- Campo fecha -->
+  <div class="mb-3">
+    <label for="fecha" class="form-label">Fecha</label>
+    <input type="date" class="form-control" id="fecha" name="fecha" formControlName="fecha" >
+    <ng-container *ngIf="formulario_tarea.get('fecha')?.touched && !formulario_tarea.get('fecha')?.valid" >
+        <div class="alert alert-danger p-0 mt-1 d-flex" role="alert">
+                <span *ngIf="formulario_tarea.get('fecha')?.errors?.['required']" class="fs-6  p-1 ">Requerido</span>
+                <span *ngIf="formulario_tarea.get('fecha')?.errors?.['pattern']" class="fs-6 p-1 ">Formato requerido dd/mm/aaaa</span>
+            </div>
+        </ng-container>
+  </div>
+
+  <button type="submit" [disabled]="!formulario_tarea.valid" class="btn btn-primary d-block m-auto" >{{formulario_tarea.get('_id')?.value == ""? "Enviar"  : "Actulizar tarea"}}</button>
+</form>
+
+<br><br>
+
+<pre class="text-white">{{formulario_tarea.value | json}}</pre>
