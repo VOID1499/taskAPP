@@ -1,16 +1,16 @@
 
 
-<div class="col-lg-3 col-md-4 col-10 m-auto ">
+<div class="col-lg-3 col-sm-6 col-md-4 col-10 m-auto ">
 
-<form (ngSubmit)="login()" #formLogin="ngForm" class="bg-dark bg-opacity-50 text-white p-1 border border-4 border-dark rounded text-dark " >
-    <h2 class="fs-3 text-center mb-2 p-1">Ingresar</h2>
-    <div class="mb-1 col-10 m-auto">
+<form (ngSubmit)="login()" #formLogin="ngForm" class="bg-dark text-white px-0 py-2 border-0 rounded" >
+    <h2 class="fs-3 text-center p-2">Ingresar</h2>
+    <div class="mb-1 col-10 m-auto mb-4">
       <label for="email" class="form-label">Correo</label>
       <input required [ngClass]="{'border-2 border-danger':email.errors?.['required'] && email.touched}" [(ngModel)]="user.email" #email="ngModel" type="email" pattern="[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-]([\.]?[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-])+@[a-zA-Z0-9]([^@&%$\/\(\)=?¿!\.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?"  class="form-control" id="email" name="email" aria-describedby="emailHelp">
       
       <span class="text-danger fs-6" *ngIf="email.errors?.['pattern'] && email.touched " >*Email invalido</span>
     </div>
-    <div class="mb-1 col-10 m-auto">
+    <div class="mb-1 col-10 m-auto mb-4">
       <label for="password" class="form-label">Contraseña</label>
       <input [ngClass]="{'border-2 border-danger':password.errors?.['required'] && password.touched}" [(ngModel)]="user.password" type="password" class="form-control" required #password="ngModel" id="password" name="password  ">
     </div>

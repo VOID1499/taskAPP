@@ -1,3 +1,3 @@
 export const environment = {
-    apiUrl:"https://node-express-01.onrender.com/api/"
+    apiUrl:"http://localhost:3000/api/"
 };
