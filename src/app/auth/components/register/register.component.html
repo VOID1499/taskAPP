@@ -1,7 +1,7 @@
 
 
 
-<div class="col-lg-3 col-md-4 col-10 m-auto ">
+<div class="col-lg-3 col-sm-6 col-md-4 col-10 m-auto ">
   
   <ng-container *ngFor="let error of errorsRegister;index as i" >
     <div class="alert alert-danger" role="alert">
@@ -12,15 +12,16 @@
 <form
   (ngSubmit)="register()"
   #formLogin="ngForm"
-  class="bg-dark bg-opacity-50 text-white p-1 border border-4 border-dark rounded text-dark"
+  class="bg-dark text-white py-2 border border-0 rounded"
 >
-  <h2 class="fs-3 text-center mb-2 p-1">Registro de usuario</h2>
+  <h2 class="fs-3 text-center my-4 p-1">Registro de usuario</h2>
 
-  <div class="mb-1 col-10 m-auto">
-    <label for="email" class="form-label">Nombre de usuario</label>
+  <div class="col-10 m-auto mb-3 ">
+    <label for="username" class="w-100 px-1 form-label" [ngClass]="{'bg-danger px-1':username.errors?.['required'] && username.touched}">
+      Nombre de usuario
+    </label>
 
     <input
-      [ngClass]="{'border-2 border-danger':username.errors?.['required'] && username.touched}"
       required
       [(ngModel)]="user.username"
       #username="ngModel"
@@ -31,11 +32,10 @@
     />
   </div>
 
-  <div class="mb-1 col-10 m-auto">
-    <label for="email" class="form-label">Correo</label>
+  <div class=" col-10 m-auto mb-3">
+    <label for="email" class="w-100 px-1 form-label" [ngClass]="{'bg-danger px-1':email.errors?.['required'] && email.touched}">Correo</label>
     <input
       required
-      [ngClass]="{'border-2 border-danger':email.errors?.['required'] && email.touched}"
       [(ngModel)]="user.email"
       #email="ngModel"
       type="email"
@@ -47,23 +47,28 @@
     />
 
     <span
-      class="text-danger fs-6"
+      class="text-warning px-1 fs-6"
       *ngIf="email.errors?.['pattern'] && email.touched "
-      >*Email invalido</span
+      >Email invalido</span
     >
   </div>
-  <div class="mb-1 col-10 m-auto">
-    <label for="password" class="form-label">Contraseña</label>
+  <div class="border-2 col-10 m-auto mb-3">
+    <label for="password" class="w-100 px-1 form-label" [ngClass]="{'bg-danger px-1':password.errors?.['required'] && password.touched}">Contraseña</label>
     <input
-      [ngClass]="{'border-2 border-danger':password.errors?.['required'] && password.touched}"
       [(ngModel)]="user.password"
       type="password"
       class="form-control"
       required
+      minlength="6"
       #password="ngModel"
       id="password"
       name="password  "
     />
+    <span
+    class="text-warning px-1 fs-6"
+    *ngIf="password.errors?.['minlength'] && password.touched "
+    >Minimo 6 caracteres</span
+  >
   </div>
 
   <button

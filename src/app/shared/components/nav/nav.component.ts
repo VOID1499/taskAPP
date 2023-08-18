@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
@@ -7,14 +8,13 @@ import { AuthService } from 'src/app/servicios/auth.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit ,AfterViewInit {
 
-  public user = null;
-
+  public user:any;
 
   constructor(
     private authService:AuthService,
-    private router:Router
+    private router:Router,
   ){
   }
 
@@ -26,13 +26,22 @@ export class NavComponent implements OnInit {
     
   }
 
+  ngAfterViewInit(): void {
+
+   
+  }
+
+
 
   logout(){
     this.authService.logout().subscribe((res)=>{
-      console.log("Token vaciado");
-      localStorage.removeItem("user")
-      this.router.navigate(["/auth/login"])
-
+      this.authService.setUser(null);
+      this.router.navigate(["/inicio"])
+    },(error)=>{
+     if(error.statusText == "OK" ) {
+      this.authService.setUser(null);
+      this.router.navigate(["/inicio"])
+     }else alert("Ocurrio un error!")
     })
   }
 }

@@ -18,6 +18,7 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [authTokenGuard],
   },
+
 ];
 
 @NgModule({

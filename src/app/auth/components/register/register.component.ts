@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
@@ -14,25 +15,26 @@ export class RegisterComponent implements OnInit {
   }
 
   constructor(
-    private authService:AuthService
+    private authService:AuthService,
+    private router:Router
   ){
 
   }
 
   public errorsRegister = [];
   public user = {
-    username:"void1499",
-    email:"erick.olivares.gonzalez@gmail.com",
-    password:"void1499"
+    username:"",
+    email:"",
+    password:""
   }
 
 
   register(){
     const {username,email,password} = this.user;
-    this.authService.register(username,email,password).subscribe(res=>{
-      console.log(res)
+      this.authService.register(username,email,password).subscribe(user=>{
+      this.authService.setUser(user);  
+      this.router.navigate(["/tareas"])
     },(errorRes)=>{
-      //que es esoooooooo!
       this.errorsRegister = errorRes.error.error;
     })
   }

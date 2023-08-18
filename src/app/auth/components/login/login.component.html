@@ -5,19 +5,18 @@
 <form (ngSubmit)="login()" #formLogin="ngForm" class="bg-dark text-white px-0 py-2 border-0 rounded" >
     <h2 class="fs-3 text-center p-2">Ingresar</h2>
     <div class="mb-1 col-10 m-auto mb-4">
-      <label for="email" class="form-label">Correo</label>
-      <input required [ngClass]="{'border-2 border-danger':email.errors?.['required'] && email.touched}" [(ngModel)]="user.email" #email="ngModel" type="email" pattern="[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-]([\.]?[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-])+@[a-zA-Z0-9]([^@&%$\/\(\)=?¿!\.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?"  class="form-control" id="email" name="email" aria-describedby="emailHelp">
+      <label for="email"  class="form-label w-100" [ngClass]="{'bg-danger px-1':email.errors?.['required'] && email.touched}">Correo</label>
+      <input required  [(ngModel)]="user.email" #email="ngModel" type="email" pattern="[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-]([\.]?[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-])+@[a-zA-Z0-9]([^@&%$\/\(\)=?¿!\.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?"  class="form-control" id="email" name="email" aria-describedby="emailHelp">
       
-      <span class="text-danger fs-6" *ngIf="email.errors?.['pattern'] && email.touched " >*Email invalido</span>
+      
     </div>
     <div class="mb-1 col-10 m-auto mb-4">
-      <label for="password" class="form-label">Contraseña</label>
-      <input [ngClass]="{'border-2 border-danger':password.errors?.['required'] && password.touched}" [(ngModel)]="user.password" type="password" class="form-control" required #password="ngModel" id="password" name="password  ">
+      <label for="password" class="form-label w-100" [ngClass]="{'bg-danger px-1':password.errors?.['required'] && password.touched}" >Contraseña</label>
+      <input  [(ngModel)]="user.password" type="password" class="form-control" required #password="ngModel" id="password" name="password  ">
     </div>
-    <div class="mb-3 col-10 form-check m-auto">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
+  
+    <a class="link-light d-block mb-1 col-10 m-auto mb-4" [routerLink]="['/auth/register']">Registrarme</a>
+
     <button [disabled]="formLogin.invalid" type="submit" class="btn btn-sm btn-primary mt-2 d-block d-block m-auto">Ingresar</button>
   </form>
 

@@ -13,7 +13,7 @@ export class AuthService {
   private user = null;
 
   constructor(private http: HttpClient) {
-    if(localStorage.getItem('user') && this.getCookie("token") != null ){
+    if(localStorage.getItem("user") && this.getCookie("token") != null ){
       const user = JSON.parse(localStorage.getItem('user')!);
       this.setUser(user)
     }
@@ -26,6 +26,7 @@ export class AuthService {
   setUser(user:any){
       this.user = user;
       this.user$.next(this.user);
+      localStorage.setItem("user",JSON.stringify(user));
   }
 
 

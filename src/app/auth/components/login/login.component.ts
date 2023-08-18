@@ -28,10 +28,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-
     this.authService.login(this.user.email,this.user.password)
     .subscribe((user)=>{
-      localStorage.setItem("user",JSON.stringify(user));
       this.authService.setUser(user)
       this.router.navigate(["/tareas"])
     })

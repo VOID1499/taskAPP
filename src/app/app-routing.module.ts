@@ -2,10 +2,11 @@ import { NgModule } from "@angular/core";
 import { ActivatedRoute, RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./components/home/home.component";
 import { RedirectComponent } from "./shared/components/redirect/redirect.component";
+import { ProfileComponent } from "./auth/components/profile/profile.component";
 
 const routes: Routes = [
   { path:"", component:HomeComponent, pathMatch: "full" },
-
+ 
   { path: "inicio", component:HomeComponent, pathMatch: "full" },
  
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
   },
   {path:"redirect/:ruta_destino" ,component:RedirectComponent},
   {path:"**",redirectTo:""}
+
 ];
 
 @NgModule({

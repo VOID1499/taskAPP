@@ -3,8 +3,10 @@
   data-bs-theme="dark"
 >
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button
+
+
+    <a  class="navbar-brand" href="#"> {{user != null ? user.username :'NavBar'}}</a>
+    <button 
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
@@ -19,18 +21,18 @@
       <ul class="navbar-nav mb-2 mb-lg-0">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/inicio']" href="#">Inicio</a>
+            <a class="nav-link" [routerLink]="['/inicio']" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Inicio</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" [routerLink]="['/tareas']" href="#">Tareas</a>
+            <a class="nav-link" [routerLink]="['/tareas']" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" >Tareas</a>
           </li>
         </ul>
       </ul>
 
-      <div class="row ms-lg-auto m-0">
+      <div class="row ms-lg-auto col-lg-2 m-0 ">
         <ng-container *ngIf="user; else login">
           <span class="navbar-text col-lg-6 col-12 ps-0">
-            <a class="nav-link ">Perfil</a>
+            <a class="nav-link"  [routerLink]="'/auth/perfil'" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Perfil</a>
           </span>
 
           <span class="navbar-text col-lg-6 col-12 ps-0 ">
@@ -39,11 +41,17 @@
         </ng-container>
 
         <ng-template #login>
-          <span class="navbar-text col-lg-6 col-12 ps-0">
-            <a class="nav-link" [routerLink]="['/auth/login']" >Login</a>
+          <span class="navbar-text col-lg-6 col-12 ps-0 ">
+            <a class="nav-link" [routerLink]="['/auth/login']" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" >Iniciar sesion</a>
           </span>
+
+          <span class="navbar-text col-lg-6 col-12 ps-0 ">
+            <a class="nav-link" [routerLink]="['/auth/register']" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Registrarme</a>
+          </span>
+
         </ng-template>
       </div>
     </div>
   </div>
 </nav>
+

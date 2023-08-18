@@ -8,21 +8,16 @@ import { TareasService } from 'src/app/servicios/tareas.service';
 })
 export class TareasComponent implements OnInit {
 
-  public tareas!:any[];
-
+  public tareas:any[] = [];
   
-  ngOnInit(): void {
-    
-    this.tareasService.getTareas().subscribe((res)=>{
-      this.tareas = res;
-    })
-
-  }
-
   constructor(
     private tareasService:TareasService
-  ){
-
-  }
-
+    ){
+      this.tareasService.getTareas().subscribe((res)=>{
+        this.tareas = res;
+      })
+    }
+    
+    ngOnInit(): void {
+    }
 }

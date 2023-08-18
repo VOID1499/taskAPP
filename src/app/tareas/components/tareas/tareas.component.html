@@ -4,9 +4,16 @@
     <a [routerLink]="['/tareas/agregar']" class="btn btn-dark">Agregar tarrea</a>
 </div>
 
-<div class="container p-0 d-flex flex-wrap mt-5 gap-2 m-auto justify-contentlg-lg-start justify-content-md-start justify-content-center  ">
+<div class="container p-0 pb-5 d-flex flex-wrap mt-5 gap-2 m-auto justify-contentlg-lg-start justify-content-md-start justify-content-center  ">
 
-    <app-card-tarea *ngFor="let tarea of tareas;index as i" [tarea]="tarea"   ></app-card-tarea>
+    <ng-container *ngIf="tareas.length > 0 ; else sinTareas" >
+        <app-card-tarea *ngFor="let tarea of tareas;index as i" [tarea]="tarea"   ></app-card-tarea>
+    </ng-container>
+
+
+    <ng-template #sinTareas >
+        <h2 class="text-white">No tienes tareas para mostrar!</h2>
+    </ng-template>
 
 </div>
 
