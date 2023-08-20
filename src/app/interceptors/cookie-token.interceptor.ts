@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpHeaders
 } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service/public-api';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 
 @Injectable()
