@@ -22,7 +22,6 @@ export class CookieTokenInterceptor implements HttpInterceptor {
     const modifiedRequest = request.clone({
       setHeaders: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials':'true'
       },
       withCredentials: true
     });
