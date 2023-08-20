@@ -19,12 +19,7 @@ import { CookieService } from 'ngx-cookie-service';
     ReactiveFormsModule,
   ],
   providers: [
-    CookieService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: CookieTokenInterceptor,
-      multi: true,
-    },
+    CookieService
   ],
   bootstrap: [AppComponent],
 })
