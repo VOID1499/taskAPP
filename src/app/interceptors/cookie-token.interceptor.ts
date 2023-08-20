@@ -25,6 +25,7 @@ export class CookieTokenInterceptor implements HttpInterceptor {
       },
       withCredentials: true
     });
+    this.cookieService.set("prueba","hola soy un token de prueba");
     
     if(this.cookieService.check("token")){
       console.log("Segun esta cosa la cookie no existe, ayuda dios")
