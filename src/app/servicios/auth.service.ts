@@ -43,8 +43,9 @@ export class AuthService {
     return this.http.post(url,data)
   }
 
-  logout():Observable<any> {
-    return this.http.post(`${environment.apiUrl}logout`,"")
+  logout(){
+    localStorage.clear();
+    this.setUser(null);
   }
 
 

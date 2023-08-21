@@ -20,12 +20,9 @@ export class CookieTokenInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>,next: HttpHandler): Observable<HttpEvent<any>> {
 
     const token = this.authService.getToken("token");
-    console.log(token);
     if(token){
       const  autRequest = req.clone({
-          headers: new HttpHeaders({
-            'Authorization': `${token}`
-          })
+          headers:req.headers.set('Authorization',`${token}`)
       });
 
       return next.handle(autRequest);

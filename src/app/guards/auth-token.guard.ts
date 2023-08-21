@@ -9,6 +9,4 @@ export const authTokenGuard: CanActivateFn = (route:ActivatedRouteSnapshot, stat
   if(token && token != "" ) return  true
   return router.navigate(["/auth/login"]);
   
-  console.log("a")
-  
 };

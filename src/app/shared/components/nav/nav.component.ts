@@ -34,14 +34,7 @@ export class NavComponent implements OnInit ,AfterViewInit {
 
 
   logout(){
-    this.authService.logout().subscribe((res)=>{
-      this.authService.setUser(null);
-      this.router.navigate(["/inicio"])
-    },(error)=>{
-     if(error.statusText == "OK" ) {
-      this.authService.setUser(null);
-      this.router.navigate(["/inicio"])
-     }else alert("Ocurrio un error!")
-    })
+   this.authService.logout();
+   this.router.navigate(['/'])
   }
 }

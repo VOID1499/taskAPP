@@ -31,8 +31,9 @@ export class RegisterComponent implements OnInit {
 
   register(){
     const {username,email,password} = this.user;
-      this.authService.register(username,email,password).subscribe(user=>{
-      this.authService.setUser(user);  
+      this.authService.register(username,email,password).subscribe(res=>{
+      this.authService.setUser(res.user);
+      this.authService.setToken(res.token)  
       this.router.navigate(["/tareas"])
     },(errorRes)=>{
       this.errorsRegister = errorRes.error.error;
