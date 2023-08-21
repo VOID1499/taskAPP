@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders,HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class AuthService {
   private user$:BehaviorSubject<any> = new BehaviorSubject<any>(null)
   private user = null;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private cookieService:CookieService) {
     if(localStorage.getItem("user") && this.getCookie("token") != null ){
       const user = JSON.parse(localStorage.getItem('user')!);
       this.setUser(user)
@@ -48,15 +49,8 @@ export class AuthService {
   }
 
   getCookie(name: string): string | null {
-    const cookieString = decodeURIComponent(document.cookie);
-    const cookies = cookieString.split('; ');
-
-    for (const cookie of cookies) {
-      const [cookieName, cookieValue] = cookie.split('=');
-      if (cookieName === name) {
-        return cookieValue;
-      }
-    }
+    
+    if(this.cookieService.check(name)) return this.cookieService.get("token")
 
     return null; // Si no se encontró la cookie
   }
