@@ -5,7 +5,7 @@
   <div class="container-fluid">
 
 
-    <a  class="navbar-brand" href="#"> {{user != null ? user.username :'NavBar'}}</a>
+    <a  class="navbar-brand" href="#"> {{user != null ? user.username :'Navegación'}}</a>
     <button 
       class="navbar-toggler"
       type="button"
@@ -30,13 +30,13 @@
       </ul>
 
       <div class="row ms-lg-auto col-lg-2 m-0 ">
-        <ng-container *ngIf="user; else login">
+        <ng-container *ngIf="user || user != null; else login">
           <span class="navbar-text col-lg-6 col-12 ps-0">
             <a class="nav-link"  [routerLink]="'/auth/perfil'" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Perfil</a>
           </span>
 
           <span class="navbar-text col-lg-6 col-12 ps-0 ">
-            <button class="nav-link" (click)="logout()" >Cerrar sesion</button>
+            <button class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" (click)="logout()" >Cerrar sesion</button>
           </span>
         </ng-container>
 
