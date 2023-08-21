@@ -29,8 +29,9 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.authService.login(this.user.email,this.user.password)
-    .subscribe((user)=>{
-      this.authService.setUser(user)
+    .subscribe((res)=>{
+      this.authService.setUser(res.user);
+      this.authService.setToken(res.token)
       this.router.navigate(["/tareas"])
     })
   }
