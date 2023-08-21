@@ -17,7 +17,7 @@ export class TareasService {
 
   getTareas():Observable<any[]> {
     const url=`${environment.apiUrl}tasks`
-    return this.http.get<any[]>(url);
+    return this.http.get<any>(url);
   }
 
   getTarea(id:string):Observable<any[]> {

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user.email,this.user.password)
     .subscribe((res)=>{
       this.authService.setUser(res.user);
-      this.authService.setToken(res.token)
+      this.authService.setToken(res.token);
       this.router.navigate(["/tareas"])
     })
   }
