@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -6,26 +7,30 @@ import {
   HttpInterceptor,
   HttpHeaders
 } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
+import { AuthService } from '../servicios/auth.service';
 
 @Injectable()
 export class CookieTokenInterceptor implements HttpInterceptor {
 
   constructor(
-    private cookieService:CookieService
+    private authService:AuthService
   ) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(req: HttpRequest<any>,next: HttpHandler): Observable<HttpEvent<any>> {
 
-  
-    // Establecer el traspaso de cookies
-    const modifiedRequest = request.clone({
-      withCredentials:true
-    });
+    const token = this.authService.getToken("token");
+    if(token){
+      const  autRequest = req.clone({
+          headers: new HttpHeaders({
+            'Authorization': `${token}`
+          })
+      })
 
-   
-  
-  return next.handle(modifiedRequest);
+      return next.handle(autRequest);
+    }
+
+    return next.handle(req);
   }
 }
+
