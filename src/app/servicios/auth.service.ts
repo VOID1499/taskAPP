@@ -49,9 +49,7 @@ export class AuthService {
   }
 
   getCookie(name: string): string | null {
-    
-    if(this.cookieService.check(name)) return this.cookieService.get("token")
-
+    if(localStorage.getItem(name)) return localStorage.getItem("token")
     return null; // Si no se encontró la cookie
   }
 

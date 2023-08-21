@@ -17,10 +17,11 @@ export class CookieTokenInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log("Interceptor de cookies")
-    // Clonar la solicitud original
+
+  
+    // Establecer el traspaso de cookies
     const modifiedRequest = request.clone({
-      withCredentials: true
+      withCredentials:true
     });
 
    

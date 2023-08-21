@@ -6,9 +6,7 @@ export const authTokenGuard: CanActivateFn = (route:ActivatedRouteSnapshot, stat
   const authService = inject(AuthService);
   const router = inject(Router)
   let tokenCookie = authService.getCookie("token");
-  if(tokenCookie && tokenCookie != "" ){
-    console.log(tokenCookie) 
-    return  true}
+  if(tokenCookie && tokenCookie != "" ) return  true;
   return router.navigate(["/auth/login"]);
   
   
