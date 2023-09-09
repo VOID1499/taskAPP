@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  
+  public submit = false;
   public user = {
     email:"",
     password:""
@@ -28,12 +28,20 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    this.submit = true; 
     this.authService.login(this.user.email,this.user.password)
     .subscribe((res)=>{
+      this.submit = false;
       this.authService.setUser(res.user);
       this.authService.setToken(res.token);
       this.router.navigate(["/tareas"])
+    },
+    (error)=>{
+      this.submit = false;
+      console.log(error)
+      alert("Ocurrio un error!")
     })
+  
   }
 
 }
