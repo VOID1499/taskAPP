@@ -20,4 +20,9 @@
     <button [disabled]="formLogin.invalid" type="submit" class="btn btn-sm btn-primary mt-2 d-block d-block m-auto">Ingresar</button>
   </form>
 
+
+  <div   [ngClass]="submit ? 'd-block':'d-none'" class="spinner-border text-primary m-auto my-2" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  
 </div>
